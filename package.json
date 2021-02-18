@@ -1,0 +1,27 @@
+{
+  "name": "gatsby-source-gathercontent",
+  "version": "0.0.1",
+  "description": "Gatsby source plugin for building websites using GatherContent as a data source",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gathercontent/gatsby-source-gathercontent.git"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gathercontent"
+  ],
+  "author": "Kyle Harper (gathercontent.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gathercontent/gatsby-source-gathercontent/issues"
+  },
+  "homepage": "https://github.com/gathercontent/gatsby-source-gathercontent#readme",
+  "dependencies": {
+    "gathercontent.js": "^0.2.0"
+  }
+}
