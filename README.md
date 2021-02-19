@@ -66,7 +66,7 @@ Here's an example of filtering by a specific folder.
 ```javascript
 export const query = graphql`
   {
-    allGathercontentItems(filter: {slug: {eq: "gill"}}) {
+    allGathercontentItems(filter: {folder: {slug: {eq: "gill"}}})
       nodes {
         name
         itemId
