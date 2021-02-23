@@ -66,7 +66,7 @@ Here's an example of filtering by a specific folder.
 ```javascript
 export const query = graphql`
   {
-    allGathercontentItems(filter: {slug: {eq: "gill"}}) {
+    allGathercontentItems(filter: {folder: {slug: {eq: "gill"}}})
       nodes {
         name
         itemId
@@ -103,4 +103,4 @@ export const query = graphql`
 `
 ```
 
-You can use any data you wish to query a single item. In the example above we use the `itemId` but you can use anything for example the `name` might be 
+You can use any data you wish to query a single item. In the example above we use the `itemId` but you can use anything for example the `name`.
