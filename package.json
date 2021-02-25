@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/gathercontent/gatsby-source-gathercontent#readme",
   "dependencies": {
-    "gathercontent.js": "^0.2.0"
+    "gathercontent.js": "^0.3.0"
   }
 }

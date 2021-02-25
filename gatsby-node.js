@@ -6,16 +6,17 @@ exports.onPostBuild = ({ reporter }) => {
 
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, options) => {
   const { createNode } = actions
-  const { email, apiKey, projectId, requiredStatuses } = options
+  const { email, apiKey, projectId } = options
 
   try {
-    const { folders, items, templates, project } = await getProjectData(projectId, { apiKey, email }, requiredStatuses);
+    const { folders, items, templates, project } = await getProjectData(projectId, { apiKey, email })
 
     folders.map(f => {
       createNode({
         id: createNodeId(f.uuid),
         name: f.name,
         slug: f.slug,
+        position: f.position,
         parent: f.parentUuid ? createNodeId(f.parentUuid) : null,
         children: items.filter(i => i.folderUuid === f.uuid).map(i => createNodeId(i.id)),
         internal: {
@@ -35,6 +36,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, opt
         status: i.statusName,
         itemContent: i.itemContent,
         parent: i.folderUuid,
+        position: i.position,
         children: [],
         folder___NODE: createNodeId(i.folderUuid),
         template___NODE: i.templateId ? createNodeId(i.templateId) : null,
