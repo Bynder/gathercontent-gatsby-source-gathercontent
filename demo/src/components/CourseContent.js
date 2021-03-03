@@ -50,7 +50,8 @@ const CourseData = ({ content }) => (
     </div>
   </div>
 );
-const CourseContent = ({ content }) => (
+
+const CourseContent = ({ content }) => content.courseDescription ? (
   <>
     <CourseData content={content} />
     <h2 className="text-4xl mt-10 mb-4">Prerequisites</h2>
@@ -63,6 +64,6 @@ const CourseContent = ({ content }) => (
     <h2 className="text-4xl mt-10 mb-4">Taught by</h2>
     <Content content={content.courseDescription.taughtBy} />
   </>
-);
+) : null;
 
 export default CourseContent;

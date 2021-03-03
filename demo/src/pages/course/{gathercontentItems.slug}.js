@@ -1,43 +1,38 @@
 import * as React from "react"
-import { graphql, Link } from 'gatsby';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import Layout from '../../components/Layout';
+import { graphql } from 'gatsby';
 import CourseContent from '../../components/CourseContent';
-import HeroImage from '../../components/HeroImage';
-// import QuickNavigation from '../../components/QuickNavigation';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { Layout } from '../../components/Layout';
+import { HeroImage } from '../../components/HeroImage';
+import { Wrapper } from '../../components/layout/Wrapper';
+import { Aside } from '../../components/layout/Aside';
+import { Main } from '../../components/layout/Main';
+import { PageIntro } from '../../components/LandingPageContent';
 
-const CoursePage = ({ data }) => {
-  const { itemContent, ...course } = data.gathercontentItems;
-  console.log(itemContent);
+function CoursePage({ data }) {
+  const department = data.gathercontentItems.folder;
+  const { itemContent, name, slug } = data.gathercontentItems;
+  const breadcrumbItems = [{
+    id: department.id,
+    to: `/courses/${department.slug}`,
+    name: department.name
+  }, {
+    id: data.gathercontentItems.id,
+    to: `/course/${slug}`,
+    name: name,
+  }];
+
   return (
-    <Layout>
-      {/*<NextSeo title="Course directory" />*/}
-      <HeroImage url={itemContent.courseDescription.photoOfCourse[0].optimisedImageUrl} />
-      <Breadcrumbs
-        items={[
-          {
-            name: 'Study',
-            href: '/#',
-          },
-          {
-            name: 'Undergraduate study',
-            href: '/#',
-          },
-          {
-            name: 'Course directory',
-            href: '/',
-          },
-        ]}
-      />
-      <div className="container px-4 xl:px-20 2xl:px-40 mx-auto lg:grid lg:grid-cols-12 gap-16 py-8">
-        <div className="col-span-3 hidden lg:block">
-          {/*<QuickNavigation folders={folders} currentFolder={item.folder_uuid} />*/}
-        </div>
-        <div className="col-span-9 xl:col-start-4 xl:pl-2 2xl:pl-8">
-          <h1 className="text-6xl mb-4 font-medium">{course.name}</h1>
+    <Layout siteMetadata={itemContent.metadata}>
+      <HeroImage url={itemContent.courseDescription?.photoOfCourse[0]?.optimisedImageUrl} />
+      <Breadcrumbs items={breadcrumbItems} />
+      <Wrapper>
+        <Aside />
+        <Main>
+          <PageIntro pageHeading={name} />
           <CourseContent content={itemContent} />
-        </div>
-      </div>
+        </Main>
+      </Wrapper>
     </Layout>
   );
 }
@@ -47,6 +42,7 @@ export const query = graphql`
     gathercontentItems(slug: {eq: $slug}) {
       id
       name
+      slug
       itemContent {
         courseDescription {
           taughtBy
@@ -66,8 +62,19 @@ export const query = graphql`
           courseName
           courseCode
         }
+        metadata {
+          title
+          keywords
+          description
+        }
+      }
+      folder {
+        id
+        name
+        slug
       }
     }
   }
 `
+
 export default CoursePage
