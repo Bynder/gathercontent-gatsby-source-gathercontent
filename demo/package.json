@@ -20,7 +20,7 @@
     "classnames": "^2.2.6",
     "gatsby": "^2.32.3",
     "gatsby-plugin-postcss": "^3.7.0",
-    "gatsby-source-gathercontent": "0.0.2",
+    "gatsby-source-gathercontent": "^0.1.1",
     "postcss": "^8.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
