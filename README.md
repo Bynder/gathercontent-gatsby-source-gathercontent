@@ -28,14 +28,14 @@ module.exports = {
 
 ## Query notes
 
-The following nodes types are available from GatherContent;
+The following node types are available from GatherContent;
 
 - `gathercontentItems`
 - `gathercontentFolders`
 - `gathercontentTemplates`
 - `gathercontentStatuses`
 
-It's strongly recommended that you utilise the built-in query builder tool to improve your knowledge of the overall data structure. All Gatsby sites come with this tool, so once you've installed the source plugin, build your project locally and explore your projects data and schema. 
+It's recommended that you utilise the query builder tool to improve your knowledge of the overall data structure. All Gatsby sites come with this tool, so once you've installed the source plugin, build your project locally and explore your projects data and schema. 
 
 ### Query a collection of items
 
