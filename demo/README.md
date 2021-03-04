@@ -1,4 +1,4 @@
-# `gatsby-source-gathercontent` demo
+# GatherContent & Gatsby Demo Site
 
 ## Prerequisites
 
@@ -6,9 +6,9 @@
 
 2. Create a GatherContent API Key by following these [instructions](https://docs.gathercontent.com/reference#authentication).
 
-3. Every GatherContent account has a set of examples projects. This demo works with a specific example project named "Course records (headless CMS example)". You'll need the project id, and you can find it in the settings for that project.
+3. Every GatherContent account comes with a set of examples projects. This demo works with a specific example project named "Course records (headless CMS example)". You'll need the project id, which you can find in the project settings.
 
-If you don't have this our support [contact us](https://gathercontent.com), and we'll add it to your account
+If you can't find this project on your account then our [support team](https://gathercontent.com) can help.
 
 ## Config
 
@@ -36,9 +36,9 @@ You can start editing the code in `src` or update the content in your GatherCont
 
 A known challenge of using Gatsby is seeing live content edits in a development environment. 
 
-Commonly, developers manually rebuild their project by re-running `npm run develop` but you can also run `npm run refresh`! 
+You can manually rebuild the project by re-running `npm run develop` or you can run `npm run refresh`! 
 
-For most types of content edits you won't need to manually restart your development server saving you time 👍
+By using the refresh command, you won't need to manually restart your development server saving you time 👍
 
 ## More reading
 
