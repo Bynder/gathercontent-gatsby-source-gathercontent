@@ -1,13 +1,11 @@
 import * as React from "react"
 import { graphql, Link } from 'gatsby';
 import { Layout } from '../../components/Layout';
-import { Aside } from '../../components/layout/Aside';
 import { Main } from '../../components/layout/Main';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Wrapper } from '../../components/layout/Wrapper';
 import { PageIntro } from '../../components/LandingPageContent';
 import { HeroImage } from '../../components/HeroImage';
-import QuickNavigation from '../../components/QuickNavigation';
 
 function CoursesPage({ data }) {
   const department = data.gathercontentItems;
@@ -23,9 +21,6 @@ function CoursesPage({ data }) {
       <HeroImage url={pageContent.heroImage[0]?.optimisedImageUrl} />
       <Breadcrumbs items={breadcrumbItems} />
       <Wrapper>
-        <Aside>
-          <QuickNavigation />
-        </Aside>
         <Main>
           <PageIntro
             pageHeading={pageContent.pageHeading}
@@ -78,7 +73,7 @@ export const query = graphql`
         }
       }
     }
-    allGathercontentItems(filter: {template: {slug: {eq: "course-record"}}, folder: {slug: {eq: $slug}}}) {
+    allGathercontentItems(filter: {template: {slug: {eq: "course-record"}}, folder: {slug: {eq: $slug}}, status: {slug: {eq: "live-and-ready-for-review"}}}) {
       nodes {
         id
         name

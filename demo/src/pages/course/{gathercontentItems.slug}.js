@@ -5,7 +5,6 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { Layout } from '../../components/Layout';
 import { HeroImage } from '../../components/HeroImage';
 import { Wrapper } from '../../components/layout/Wrapper';
-import { Aside } from '../../components/layout/Aside';
 import { Main } from '../../components/layout/Main';
 import { PageIntro } from '../../components/LandingPageContent';
 
@@ -27,7 +26,6 @@ function CoursePage({ data }) {
       <HeroImage url={itemContent.courseDescription?.photoOfCourse[0]?.optimisedImageUrl} />
       <Breadcrumbs items={breadcrumbItems} />
       <Wrapper>
-        <Aside />
         <Main>
           <PageIntro pageHeading={name} />
           <CourseContent content={itemContent} />

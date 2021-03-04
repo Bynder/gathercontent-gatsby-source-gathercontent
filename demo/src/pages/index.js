@@ -3,11 +3,9 @@ import { graphql, Link } from 'gatsby';
 import { Layout } from '../components/Layout';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Wrapper } from '../components/layout/Wrapper';
-import { Aside } from '../components/layout/Aside';
 import { Main } from '../components/layout/Main';
 import { PageIntro } from '../components/LandingPageContent';
 import { HeroImage } from '../components/HeroImage';
-import QuickNavigation from '../components/QuickNavigation';
 
 function IndexPage({ data }) {
   const pageContent = data.gathercontentItems.itemContent.content;
@@ -17,9 +15,6 @@ function IndexPage({ data }) {
       <HeroImage url={pageContent.heroImage[0]?.optimisedImageUrl} />
       <Breadcrumbs />
       <Wrapper>
-        <Aside>
-          <QuickNavigation />
-        </Aside>
         <Main>
           <PageIntro
             pageHeading={pageContent.pageHeading}
@@ -98,7 +93,7 @@ export const query = graphql`
         }
       }
     }
-    allGathercontentItems(sort: {fields: position}, filter: {itemContent: {taxonomy: {tags: {elemMatch: {label: {eq: "Promotion"}}}}}}) {
+    allGathercontentItems(sort: {fields: position}, filter: {status: {slug: {eq: "live-and-ready-for-review"}}, itemContent: {taxonomy: {tags: {elemMatch: {label: {eq: "Promotion"}}}}}}) {
       group(field: folder___id) {
         edges {
           node {
