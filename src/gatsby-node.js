@@ -4,9 +4,23 @@ exports.onPostBuild = ({ reporter }) => {
   reporter.info(`Your Gatsby site has been built!`)
 }
 
+const nodeTypes = {
+  FOLDERS: 'gathercontentFolders',
+  ITEMS: 'gathercontentItems',
+  TEMPLATES: 'gathercontentTemplates',
+  STATUSES: 'gathercontentStatuses',
+}
+
+exports.nodeTypes = nodeTypes;
+
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, options) => {
   const { createNode } = actions
   const { email, apiKey, projectId } = options
+
+  if (!apiKey || !email || !projectId) {
+    throw('Missing api key, email or project id. Check your Gatsby plugin configuration.')
+  }
+
   const { folders, items, templates, project } = await getProjectData(projectId, { apiKey, email })
 
   folders.map(f => {
@@ -18,7 +32,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, opt
       parent: f.parentUuid ? createNodeId(f.parentUuid) : null,
       children: items.filter(i => i.folderUuid === f.uuid).map(i => createNodeId(i.id)),
       internal: {
-        type: 'gathercontentFolders',
+        type: nodeTypes.FOLDERS,
         content: JSON.stringify(f),
         contentDigest: createContentDigest(f)
       }
@@ -31,7 +45,6 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, opt
       itemId: i.id,
       name: i.name,
       slug: i.slug,
-      status: i.statusName,
       itemContent: i.itemContent,
       parent: i.folderUuid,
       position: i.position,
@@ -40,7 +53,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, opt
       template___NODE: i.templateId ? createNodeId(i.templateId) : null,
       status___NODE: i.statusId ? createNodeId(i.statusId) : null,
       internal: {
-        type: 'gathercontentItems',
+        type: nodeTypes.ITEMS,
         content: JSON.stringify(i),
         contentDigest: createContentDigest(i),
       },
@@ -55,7 +68,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, opt
       parent: null,
       children: items.filter(i => i.structureUuid === t.structureUuid).map(i => createNodeId(i.id)),
       internal: {
-        type: 'gathercontentTemplates',
+        type: nodeTypes.TEMPLATES,
         content: JSON.stringify(t),
         contentDigest: createContentDigest(t)
       }
@@ -70,7 +83,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }, opt
       parent: null,
       children: items.filter(i => i.statusId === s.id).map(i => createNodeId(i.id)),
       internal: {
-        type: 'gathercontentStatuses',
+        type: nodeTypes.STATUSES,
         content: JSON.stringify(s),
         contentDigest: createContentDigest(s)
       }
