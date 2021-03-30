@@ -1,6 +1,7 @@
-const nock = require('nock');
-const { sourceNodes, nodeTypes } = require('../gatsby-node');
-const { nockGetProjectData } = require('gathercontent.js/dist/__tests__/mocks/nocks/nockGetProjectData');
+import nock from 'nock';
+import { sourceNodes } from '../gatsby-node';
+import { gatsbyNodeTypes } from '../gatsby-nodeTypes';
+import { mockGetProjectData } from 'gathercontent.js/dist/__tests__/mocks/mockGetProjectData';
 
 const expectFolderNodeCreation = (createNodeCall, folder, parent, children) => {
   expect(createNodeCall).toEqual([{
@@ -11,7 +12,7 @@ const expectFolderNodeCreation = (createNodeCall, folder, parent, children) => {
     parent,
     children,
     internal: {
-      type: nodeTypes.FOLDERS,
+      type: gatsbyNodeTypes.FOLDERS,
       content: JSON.stringify(folder),
       contentDigest: folder
     }}]);
@@ -32,7 +33,7 @@ const expectItemNodeCreation = (createNodeCall, item) => {
     status___NODE: item.statusId,
     itemContent: item.itemContent,
     internal: {
-      type: nodeTypes.ITEMS,
+      type: gatsbyNodeTypes.ITEMS,
       content: JSON.stringify(item),
       contentDigest: item
     }}]);
@@ -46,7 +47,7 @@ const expectTemplateNodeCreation = (createNodeCall, template, children) => {
     parent: null,
     children,
     internal: {
-      type: nodeTypes.TEMPLATES,
+      type: gatsbyNodeTypes.TEMPLATES,
       content: JSON.stringify(template),
       contentDigest: template
     }}]);
@@ -60,7 +61,7 @@ const expectStatusNodeCreation = (createNodeCall, status, children) => {
     parent: null,
     children,
     internal: {
-      type: nodeTypes.STATUSES,
+      type: gatsbyNodeTypes.STATUSES,
       content: JSON.stringify(status),
       contentDigest: status
     }}]);
@@ -68,7 +69,7 @@ const expectStatusNodeCreation = (createNodeCall, status, children) => {
 
 test('creating the Gatsby nodes for a GatherContent project', async () => {
   const apiNock = nock(/gathercontent\.com/).persist();
-  const { project, folders, items, templates } = await nockGetProjectData(apiNock);
+  const { project, folders, items, templates } = await mockGetProjectData(apiNock);
   const createNode = jest.fn();
   const createContentDigest = jest.fn((value) => value);
   const createNodeId = jest.fn((value) => value);

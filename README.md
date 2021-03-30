@@ -8,7 +8,9 @@ Source plugin for pulling content into Gatsby from GatherContent.
 npm install gastby-source-gathercontent 
 ```
 
-## How to use
+## Configuration
+
+We recommend using environment variables for your GatherContent configuration. You can learn more about using environment variables with Gatsby [here](https://www.gatsbyjs.com/docs/how-to/local-development/environment-variables/).
 
 ```
 // gatsby-config.js
@@ -28,7 +30,7 @@ module.exports = {
 
 ## Query notes
 
-The following node types are available from GatherContent;
+Once you've configured the source plugin and started your Gatsby build, the following node types will be available;
 
 - `gathercontentItems`
 - `gathercontentFolders`
@@ -46,6 +48,8 @@ export const query = graphql`
   {
     allGathercontentItems {
       nodes {
+        id
+        slug
         name
         itemId
         itemContent {
@@ -59,40 +63,44 @@ export const query = graphql`
 `
 ```
 
-`gathercontentItems` are related to `gathercontentFolders`, `gathercontentTemplates` and `gathercontentStatuses`, which is helpful for filtering.
-
-Here's an example of filtering by a specific folder.
+`gathercontentItems` are related to `gathercontentFolders`, `gathercontentTemplates` and `gathercontentStatuses`, which is useful for filtering.
 
 ```javascript
+// filter items by a folder slug of "about"
 export const query = graphql`
   {
-    allGathercontentItems(filter: {folder: {slug: {eq: "gill"}}})
-      nodes {
-        name
-        itemId
-        itemContent {
-          foo {
-            bar
+    allGathercontentItems(filter: {folder: {slug: {eq: "about"}}}) {
+      edges {
+          node {
+            id
+            slug
+            name
+            itemId
+            itemContent {
+              foo {
+                bar
+              }
+            }
           }
-        }
       }
     }
   }
 `
 ```
-
-The built-in GraphQL builder tool is really helpful for discovering the power of what you can filter by. Give it a try 🙂 
 
 ### Query for a single node
 
 You may want to query a single item (rather than filtering a collection). To do that you can utilise `gathercontentItems`.
 
 ```javascript
+// query item with slug of "homepage"
 export const query = graphql`
   {
-    gathercontentItems(itemId: {eq: gill}) {
-      itemId
+    gathercontentItems(slug: {eq: "about"}) {
+      id
+      slug
       name
+      itemId
       itemContent {
         foo {
           bar
@@ -102,5 +110,3 @@ export const query = graphql`
   }
 `
 ```
-
-You can use any data you wish to query a single item. In the example above we use the `itemId` but you can use anything for example the `name`.
