@@ -40,5 +40,9 @@
       "name": "Kyle Harper",
       "email": "kyle@gathercontent.com"
     }
+  ],
+  "files": [
+    "gatsby-node.js",
+    "gatsby-nodeTypes.js"
   ]
 }
