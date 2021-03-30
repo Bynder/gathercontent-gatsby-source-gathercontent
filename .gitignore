@@ -1,5 +1,9 @@
 .idea
 
+# output
+gatsby-*
+!src/**
+
 # Logs
 logs
 *.log
