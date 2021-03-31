@@ -24,25 +24,17 @@ gatsby new gatsby-site https://github.com/gathercontent/gatsby-starter-gathercon
 
 Once complete, navigate to the project with `cd gatsby-site`.
 
-### Install the `gatsby-source-gathercontent` plugin
-
-```cli
-npm install gatsby-source-gathercontent
-```
+The Gatsby command and starter repo should have already installed your project ready to be configured.
 
 ### Configure the plugin
 
-Now we have the plugin, we must add it to our site configuration. Inside of `gatsby-config.js` add the following.
+Now is time to configuration the project. Create a `.env.development` file and populate it with the prerequisite data.
 
 ```
-{
-  resolve: 'gatsby-source-gathercontent',
-  options: {
-    email: process.env.GATSBY_GC_EMAIL,
-    apiKey: process.env.GATSBY_GC_API_KEY,
-    projectId: process.env.GATSBY_GC_PROJECT_ID,
-  }
-}
+# .env.development
+GATSBY_GC_EMAIL=<email>
+GATSBY_GC_API_KEY=<your_api_key>
+GATSBY_GC_PROJECT_ID=<project_id>
 ```
 
 ### Inspecting the sourced data
@@ -277,7 +269,8 @@ This example is now only querying items with the `course-record` template.
 You may want to query a single item (e.g. to show a single course page). To do that you can utilise `gathercontentItems`.
 
 ```graphql
-gathercontentItems(slug: {eq: "civil-engineering"}) {
+{
+  gathercontentItems(slug: {eq: "civil-engineering"}) {
     id
     slug
     name
@@ -302,6 +295,7 @@ gathercontentItems(slug: {eq: "civil-engineering"}) {
       }
     }
   }
+}
 ```
 
 ```json
