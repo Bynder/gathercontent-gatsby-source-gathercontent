@@ -6,11 +6,11 @@
 
 - You have a [GatherContent](https://gathercontent.com/) account.
 
-- You have a GatherContent API Key.
+- You have a GatherContent [API Key](https://docs.gathercontent.com/reference#authentication).
 
-- You have a project in GatherContent (preferably an example project named "Course records (headless CMS example))".
+- You have a project in GatherContent (preferably a demo project named "Course records (headless CMS example))".
 
-This guide references details from the example project "Course records (headless CMS example)". 
+This guide references details from the demo project "Course records (headless CMS example)".
 
 If you can't find this project on your account then our [support team](https://gathercontent.com) can help.
 
@@ -34,7 +34,7 @@ Now is time to configuration the project. Create a `.env.development` file and p
 # .env.development
 GATSBY_GC_EMAIL=<email>
 GATSBY_GC_API_KEY=<your_api_key>
-GATSBY_GC_PROJECT_ID=<project_id>
+GATSBY_GC_PROJECT_ID=<project_id> // you can find this in the project settings
 ```
 
 ### Inspecting the sourced data
