@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-gathercontent",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "description": "Gatsby source plugin for building websites using GatherContent as a data source",
   "main": "index.js",
   "scripts": {
