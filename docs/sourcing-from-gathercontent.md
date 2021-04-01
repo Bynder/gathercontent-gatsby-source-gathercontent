@@ -120,6 +120,16 @@ We can write GraphQL queries to return a collection of items using `allGathercon
 }
 ```
 
+#### What is itemContent?
+
+For Gatsby queries to return usable data we map your item structure and content together into a single object named `itemContent`. 
+
+For example, `itemContent.courseData.courseName` maps to the course name field in the course data group in GatherContent.
+
+![GatherContent GraphiQL](./images/item.png)
+
+The schema of `itemContent` is defined by the names of the groups and fields, so you can navigate your structure with ease.
+
 ### Filtering a query
 
 `Items` are related to `Folders`, `Templates` and `Statuses`, which is useful for filtering & grouping.
