@@ -1,3 +1,5 @@
+!['GatherContent & Gatsby'](hero.png)
+
 # gatsby-source-gathercontent
 
 Source plugin for pulling content into Gatsby from GatherContent. 
@@ -30,6 +32,6 @@ module.exports = {
 
 ## Learn more
 
-- [Sourcing from GatherContent](https://github.com/gathercontent/gatsby-source-gathercontent/docs/sourcing-from-gathercontent.md) - a guide on querying with GatherContent.
+- [Sourcing from GatherContent](https://github.com/gathercontent/gatsby-source-gathercontent/blob/main/docs/sourcing-from-gathercontent.md) - a guide on querying with GatherContent.
 - [GatherContent Gatsby Starter](https://github.com/gathercontent/gatsby-starter-gathercontent) - a starter project
 - [gathercontent.js](https://github.com/gathercontent/gathercontent.js) - a helper library for getting content from GatherContent
