@@ -7,7 +7,7 @@ Source plugin for pulling content into Gatsby from GatherContent.
 ## Install
 
 ```
-npm install gastby-source-gathercontent 
+npm install gatsby-source-gathercontent 
 ```
 
 ## Configuration
